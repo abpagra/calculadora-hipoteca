@@ -13,18 +13,18 @@ export default function Page() {
   const [periocidad, setPeriocidad] = useState("anual");
 
   const [hipoteca, setHipoteca] = useState<Hipoteca | undefined>();
-  let realizarCalculos = () => {
-    let hipoteca = new Hipoteca(capitalPendiente, fechaFin, tipoInteres);
+  const realizarCalculos = () => {
+    const hipoteca = new Hipoteca(capitalPendiente, fechaFin, tipoInteres);
     setHipoteca(hipoteca);
   };
 
   return (
     <main>
-      <h1 className="text-danger">Simulacion de amortizacion periodica</h1>
+      <h1 className="text-danger">Simulación de amortización periódica</h1>
       <div className="row">
         <div className="col-sm-6">
           <label htmlFor="capitalPendiente" className="form-label mb-2">
-            Capital pendiente
+            Capital pendiente <span className="text-muted" title="Cantidad que queda por pagar de la hipoteca">ⓘ</span>
           </label>
           <input
             id="capitalPendiente"
@@ -35,10 +35,11 @@ export default function Page() {
               setCapitalPendiente(Number.parseFloat(e.target.value))
             }
           />
+          <div className="form-text">Importe total que aún debes del préstamo.</div>
         </div>
         <div className="col-sm-6">
           <label htmlFor="fechaFin" className="from-label mb-2">
-            Fecha de fin
+            Fecha de fin <span className="text-muted" title="Fecha en la que finaliza la hipoteca actualmente">ⓘ</span>
           </label>
           <input
             type="date"
@@ -46,25 +47,28 @@ export default function Page() {
             className="form-control form-control-sm"
             onChange={(e) => setFechaFin(new Date(e.target.value))}
           />
+          <div className="form-text">Fecha prevista de finalización de la hipoteca.</div>
         </div>
       </div>
 
       <div className="row">
         <div className="col-sm-6">
           <label htmlFor="tipoInteres" className="form-label mb-2">
-            Tipo de interes
+            Tipo de interés <span className="text-muted" title="Interés anual nominal aplicado al préstamo">ⓘ</span>
           </label>
           <input
             id="tipoInteres"
             type="number"
             className="form-control  form-control-sm"
             min={0}
+            step="0.01"
             onChange={(e) => setTipoInteres(Number.parseFloat(e.target.value))}
           />
+          <div className="form-text">Interés anual en porcentaje (ej: 3.5).</div>
         </div>
         <div className="col-sm-6">
           <label htmlFor="cuotaActual" className="from-label mb-2">
-            Cuota actual
+            Cuota actual <span className="text-muted" title="Cantidad que pagas cada mes actualmente">ⓘ</span>
           </label>
           <input
             type="number"
@@ -73,13 +77,14 @@ export default function Page() {
             min={0}
             onChange={(e) => setCuotaActual(Number.parseFloat(e.target.value))}
           />
+          <div className="form-text">Cuota mensual que pagas en la actualidad. Si no se indica, se calcula automáticamente.</div>
         </div>
       </div>
 
       <div className="row">
         <div className="col-sm-6">
           <label htmlFor="cantidadAmortizar" className="form-label mb-2">
-            Cantidad a amortizar
+            Cantidad a amortizar <span className="text-muted" title="Cantidad extra que pagarás periódicamente para reducir capital">ⓘ</span>
           </label>
           <input
             id="cantidadAmortizar"
@@ -90,10 +95,11 @@ export default function Page() {
               setCantidadAmortizar(Number.parseFloat(e.target.value))
             }
           />
+          <div className="form-text">Importe extra que pagarás de forma periódica para reducir la deuda.</div>
         </div>
         <div className="col-sm-6">
           <label htmlFor="periocidad" className="from-label mb-2">
-            Periocidad de la amortizacion
+            Periodicidad de la amortización <span className="text-muted" title="Cada cuánto tiempo harás el pago extra">ⓘ</span>
           </label>
           <select
             id="periocidad"
@@ -104,6 +110,7 @@ export default function Page() {
             <option value="mensual">Mensual</option>
             <option value="anual">Anual</option>
           </select>
+          <div className="form-text">Frecuencia con la que realizarás la amortización anticipada.</div>
         </div>
       </div>
 

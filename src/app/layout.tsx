@@ -16,7 +16,6 @@ export default function RootLayout({
     <html lang="es" data-bs-theme="dark">
       <body>
         <div className="container">{children}</div>
-        <script src="bootstrap/dist/js/bootstrap.bundle.min.js" />
       </body>
     </html>
   );
