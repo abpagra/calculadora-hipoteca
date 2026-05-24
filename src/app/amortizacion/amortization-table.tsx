@@ -50,7 +50,7 @@ export default function AmortizationTable({
           </thead>
           <tbody>
             {visible.map((row) => (
-              <tr key={row.plazo}>
+              <tr key={row.plazo + (row.cuota > 0 ? "C" : "A")}>
                 <td>{row.plazo}</td>
                 <td>{row.cuota > 0 ? row.cuota.toFixed(2) : "—"}</td>
                 <td>{row.interesCuota.toFixed(2)}</td>

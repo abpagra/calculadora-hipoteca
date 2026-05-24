@@ -75,7 +75,7 @@ export default function Details({
           <div>
             <div className="row">
               <div className="col-md-6 mb-3">
-                <div className="card bg-light h-100">
+                <div className="card h-100">
                   <div className="card-body">
                     <h6 className="card-title text-muted">Sin amortizar</h6>
                     <p className="card-text mb-1">
@@ -92,7 +92,7 @@ export default function Details({
               </div>
 
               <div className="col-md-6 mb-3">
-                <div className="card bg-light h-100">
+                <div className="card h-100">
                   <div className="card-body">
                     <h6 className="card-title text-muted">
                       Con amortización ({periocidad})
@@ -119,9 +119,8 @@ export default function Details({
                 {(totalBase.plazo - totalExtra.plazo) % 12} meses)
               </span>
               <span className="fs-5">
-                {
-                  (totalBase.interes - totalExtra.interes).toFixed(2)
-                } € menos en intereses
+                {(totalBase.interes - totalExtra.interes).toFixed(2)} € menos en
+                intereses
               </span>
             </div>
           </div>
